@@ -1,6 +1,12 @@
+
 <h1 align="center"> <i>Soft Prompts Go Hard:</i>   <br>
 Steering Visual Language Models with Hidden Meta-Instructions </h1>
 
+<img src="interesting_examples/paper_review.png" alt="drawing" width="1000"/>
+
+We introduce a new type of indirect injection vulnerabilities in language models that operate on images: hidden ``meta-instructions'' that influence how the model interprets the image and steer the model's outputs to express an adversary-chosen style, sentiment, or point of view.
+
+We explain how to create meta-instructions by generating images that act as soft prompts.  Unlike jailbreaking attacks and adversarial examples, outputs resulting from these images are plausible and based on the visual content of the image, yet follow the adversary's (meta-)instructions.  We describe the risks of these attacks, including misinformation and spin, evaluate their efficacy for multiple visual language models and adversarial meta-objectives, and demonstrate how they can ``unlock'' capabilities of the underlying language models that are unavailable via explicit text instructions.  Finally, we discuss defenses against these attacks.
 
 ## Setup
 
