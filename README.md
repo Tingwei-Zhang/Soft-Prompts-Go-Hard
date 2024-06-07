@@ -1,4 +1,4 @@
-<h1 align="center"> <i>Soft Prompts Go Hard</i>   <br>
+<h1 align="center"> <i>Soft Prompts Go Hard:</i>   <br>
 Steering Visual Language Models with Hidden Meta-Instructions </h1>
 
 
