@@ -98,3 +98,15 @@ python -u llava_llama_v2_inference.py --image_file clean_images/0.png --image_in
  ```
 3. Query oracle model:
    "with yes or no, determine if the output is relevant to the "label" in the image and answers the question "text prompt"."
+
+## Defenses:
+1. JPEG defense
+* MiniGPT-4
+  ```bash
+  python -u minigpt_inference.py --gpu_id 0 --mode JPEG_VisualChatBot --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Neutral/constrained_eps_32_batch_8/result.jsonl
+  python -u minigpt_inference.py --gpu_id 0 --mode JPEG_VisualChatBot --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Negative/constrained_eps_32_batch_8/result.jsonl
+  python -u minigpt_inference.py --gpu_id 0 --mode JPEG_VisualChatBot --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Positive/constrained_eps_32_batch_8/result.jsonl
+  ```
+2. Anamoly detection
+   
+     run eval_anamoly_detection.ipynb
