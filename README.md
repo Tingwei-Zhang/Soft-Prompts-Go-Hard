@@ -113,6 +113,6 @@ python -u llava_llama_v2_inference.py --image_file clean_images/0.png --image_in
   python -u minigpt_inference.py --gpu_id 0 --mode JPEG_VisualChatBot --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Negative/constrained_eps_32_batch_8/result.jsonl
   python -u minigpt_inference.py --gpu_id 0 --mode JPEG_VisualChatBot --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Positive/constrained_eps_32_batch_8/result.jsonl
   ```
-2. Anamoly detection
+2. Anomaly detection
    
-     run eval_anamoly_detection.ipynb
+     run eval_anomaly_detection.ipynb
