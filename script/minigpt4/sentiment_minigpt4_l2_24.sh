@@ -1,0 +1,54 @@
+#Image 0
+#Attack
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --instruction positive --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/0.png --save_dir output/minigpt4/0/Sentiment/Positive/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --instruction negative --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/0.png --save_dir output/minigpt4/0/Sentiment/Negative/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --instruction neutral --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/0.png --save_dir output/minigpt4/0/Sentiment/Neutral/l2_eps_24_batch_8 --constrained l2
+#Inference 
+# Our method
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Neutral/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Neutral/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Negative/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Negative/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Positive/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/0/Sentiment/Positive/l2_eps_24_batch_8/result.jsonl
+
+#Image 1
+#Attack
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/1/Sentiment/dataset.csv --instruction positive --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/1.png --save_dir output/minigpt4/1/Sentiment/Positive/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/1/Sentiment/dataset.csv --instruction negative --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/1.png --save_dir output/minigpt4/1/Sentiment/Negative/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/1/Sentiment/dataset.csv --instruction neutral --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/1.png --save_dir output/minigpt4/1/Sentiment/Neutral/l2_eps_24_batch_8 --constrained l2
+#Inference 
+# Our method
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/1/Sentiment/dataset.csv --image_file output/minigpt4/1/Sentiment/Neutral/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/1/Sentiment/Neutral/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/1/Sentiment/dataset.csv --image_file output/minigpt4/1/Sentiment/Negative/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/1/Sentiment/Negative/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/1/Sentiment/dataset.csv --image_file output/minigpt4/1/Sentiment/Positive/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/1/Sentiment/Positive/l2_eps_24_batch_8/result.jsonl
+
+#Image 2
+#Attack
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/2/Sentiment/dataset.csv --instruction positive --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/2.png --save_dir output/minigpt4/2/Sentiment/Positive/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/2/Sentiment/dataset.csv --instruction negative --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/2.png --save_dir output/minigpt4/2/Sentiment/Negative/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/2/Sentiment/dataset.csv --instruction neutral --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/2.png --save_dir output/minigpt4/2/Sentiment/Neutral/l2_eps_24_batch_8 --constrained l2
+#Inference 
+# Our method
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/2/Sentiment/dataset.csv --image_file output/minigpt4/2/Sentiment/Neutral/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/2/Sentiment/Neutral/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/2/Sentiment/dataset.csv --image_file output/minigpt4/2/Sentiment/Negative/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/2/Sentiment/Negative/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/2/Sentiment/dataset.csv --image_file output/minigpt4/2/Sentiment/Positive/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/2/Sentiment/Positive/l2_eps_24_batch_8/result.jsonl
+
+#Image 3
+#Attack
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/3/Sentiment/dataset.csv --instruction positive --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/3.png --save_dir output/minigpt4/3/Sentiment/Positive/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/3/Sentiment/dataset.csv --instruction negative --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/3.png --save_dir output/minigpt4/3/Sentiment/Negative/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/3/Sentiment/dataset.csv --instruction neutral --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/3.png --save_dir output/minigpt4/3/Sentiment/Neutral/l2_eps_24_batch_8 --constrained l2
+#Inference 
+# Our method
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/3/Sentiment/dataset.csv --image_file output/minigpt4/3/Sentiment/Neutral/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/3/Sentiment/Neutral/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/3/Sentiment/dataset.csv --image_file output/minigpt4/3/Sentiment/Negative/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/3/Sentiment/Negative/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/3/Sentiment/dataset.csv --image_file output/minigpt4/3/Sentiment/Positive/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/3/Sentiment/Positive/l2_eps_24_batch_8/result.jsonl
+
+#Image 4
+#Attack
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --instruction positive --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/4.png --save_dir output/minigpt4/4/Sentiment/Positive/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --instruction negative --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/4.png --save_dir output/minigpt4/4/Sentiment/Negative/l2_eps_24_batch_8 --constrained l2
+python minigpt_visual_attack.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --instruction neutral --n_iters 2000 --constrained constrained --eps 24 --alpha 1 --image_file clean_images/4.png --save_dir output/minigpt4/4/Sentiment/Neutral/l2_eps_24_batch_8 --constrained l2
+#Inference 
+# Our method
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/minigpt4/4/Sentiment/Neutral/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Sentiment/Neutral/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/minigpt4/4/Sentiment/Negative/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Sentiment/Negative/l2_eps_24_batch_8/result.jsonl
+python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/minigpt4/4/Sentiment/Positive/l2_eps_24_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Sentiment/Positive/l2_eps_24_batch_8/result.jsonl
