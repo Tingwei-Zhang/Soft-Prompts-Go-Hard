@@ -1,24 +1,23 @@
-# Training data for image soft prompt
+# Corpus for image soft prompt
 
-instruction_data folder stores the training data of generating image soft prompt with different instructions.
+Folders from 0 to 4 store the training data of generating image soft prompt with different instructions.
 
-## Meta-objectives:
+[Emotions](https://huggingface.co/SamLowe/roberta-base-go_emotions): admiration, love, gratitude, fear, amusement, anger
 
-[Sentiment](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest): Positive, Negative, Neutral
+[Gender](https://huggingface.co/padmajabfrl/Gender-Classification): Female, Male
 
-[Politics](https://huggingface.co/m-newhauser/distilbert-political-tweets): Democrat, Republican
+[Irony](https://huggingface.co/cardiffnlp/twitter-roberta-base-irony): Irony, Non-irony
 
-[Language](https://huggingface.co/papluca/xlm-roberta-base-language-detection): English, French, Spanish
+[Sentiment](https://huggingface.co/SamLowe/roberta-base-go_emotions): positive, negative, neutral 
 
-[Formality](https://huggingface.co/s-nlp/roberta-base-formality-ranker): Formal, Informal
-
-## Prompt to synthesize training data with Chatgpt
+# Prompt to synthesize Corpus with Chatgpt
 
 1. Generate 20 questions about the 'label' (e.g. cassette player) in the image. Make them a table
-2. Generate 20 different questions about the 'label' (e.g. cassette player) in the image. Make them a table
-3. Generate 20 different questions about the 'label' (e.g. cassette player) in the image. Make them a table
+2. Generate 20 more different questions about the 'label' (e.g. cassette player) in the image. Make them a table
+3. Generate 20 more different questions about the 'label' (e.g. cassette player) in the image. Make them a table
 4. Answer the following questions about the (cassette player) in the image with a (positive/negative/neutral) spin. Make them a table
    
 
-## Validate synthesized data
+# Validate synthesized data
+
 run training_data_evaluation.ipynb to validate if synthesized data is correctly classsified by the evaluators 
