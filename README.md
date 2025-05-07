@@ -1,12 +1,14 @@
 
 <h1 align="center"> <i>Soft Prompts Go Hard:</i>   <br>
-Steering Visual Language Models with Hidden Meta-Instructions </h1>
+Self-interpreting Adversarial Images </h1>
 
 <img src="interesting_examples/paper_review.png" alt="drawing" width="1000"/>
 
-We introduce a new type of indirect injection vulnerabilities in language models that operate on images: hidden ``meta-instructions'' that influence how the model interprets the image and steer the model's outputs to express an adversary-chosen style, sentiment, or point of view.
+We introduce a new type of indirect, cross-modal injection attacks against visual language models that enable creation of self-interpreting images. These images contain hidden “meta-instructions” that control how models answer users’ questions about the image and steer their outputs to express an adversary-chosen style, sentiment, or point of view. 
 
-We explain how to create meta-instructions by generating images that act as soft prompts.  Unlike jailbreaking attacks and adversarial examples, outputs resulting from these images are plausible and based on the visual content of the image, yet follow the adversary's (meta-)instructions.  We describe the risks of these attacks, including misinformation and spin, evaluate their efficacy for multiple visual language models and adversarial meta-objectives, and demonstrate how they can ``unlock'' capabilities of the underlying language models that are unavailable via explicit text instructions.  Finally, we discuss defenses against these attacks.
+Self-interpreting images act as soft prompts, conditioning the model to satisfy the adversary’s (meta-)objective while still producing answers based on the image’s visual content. Meta-instructions are thus a stronger form of prompt injection. Adversarial images look natural and the model’s answers are coherent and plausible—yet they also follow the adversary-chosen interpretation, e.g., political spin, or even objectives that are not achievable with explicit text instructions. 
+
+We evaluate the efficacy of self-interpreting images for a variety of models, interpretations, and user prompts. We describe how these attacks could cause harm by enabling creation of self-interpreting content that carries spam, misinformation, or spin. Finally, we discuss defenses.
 
 ## Setup
 

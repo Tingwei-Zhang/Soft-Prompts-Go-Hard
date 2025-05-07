@@ -8,10 +8,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sys
 
-sys.path.insert(0,'/home/tz362/Desktop/projects/DiffJPEG')  # Adds the DiffJPEG directory to sys.path
-from DiffJPEG import DiffJPEG
-
-
 def normalize(images):
     mean = torch.tensor([0.48145466, 0.4578275, 0.40821073]).cuda()
     std = torch.tensor([0.26862954, 0.26130258, 0.27577711]).cuda()
@@ -72,14 +68,6 @@ class Attacker:
                 modified_prompt = text_prompt.replace("###Assistant:", f" {instruction} ###Assistant:")
                 modified_prompts.append(modified_prompt)
 
-            # for i in range(len(modified_prompts)):
-            #     print(modified_prompts[i])
-            #     print(batch_targets[i])
-            # input()
-
-            # text_prompts = [text_prompt] * batch_size
-
-
             x_adv = normalize(adv_noise)
 
             prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=modified_prompts, img_prompts=[[x_adv]])
@@ -119,10 +107,6 @@ class Attacker:
         return adv_img_prompt
 
     def attack_constrained(self, text_prompt, img, batch_size = 8, num_iter=2000, alpha=1/255, epsilon = 128/255 ):
-        # print(self.targets)
-        # print(random.sample(self.targets, batch_size))
-        # print(text_prompt)
-        # input()
         print('>>> batch_size:', batch_size)
 
         clean_prompt = denormalize(img).detach().cpu()
@@ -148,14 +132,12 @@ class Attacker:
             modified_prompts = []
             for instruction in selected_instructions:
                 modified_prompt = text_prompt % instruction
-                # print(modified_prompt)
                 modified_prompts.append(modified_prompt)
 
             x_adv = x + adv_noise
             x_adv = normalize(x_adv)
             prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=modified_prompts, img_prompts=[[x_adv]])
 
-            # prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=text_prompts, img_prompts=[[x_adv]])
             prompt.img_embs = prompt.img_embs * batch_size
             prompt.update_context_embs()
 
@@ -231,7 +213,6 @@ class Attacker:
             
             prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=modified_prompts, img_prompts=[[x_adv]])
 
-            # prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=text_prompts, img_prompts=[[x_adv]])
             prompt.img_embs = prompt.img_embs * batch_size
             prompt.update_context_embs()
 
@@ -292,11 +273,8 @@ class Attacker:
             soft_embedding_tensor = self.soft_embedding.unsqueeze(0).to(self.device)
             prompt.img_embs = prompt.img_embs * batch_size
             prompt.update_context_embs()
-            #the shape of soft_embedding_tensor is [1,32, 5120], the shape of prompt.context_embs is [batchsize, 70, 5120]
 
             prompt.context_embs[0] = torch.cat([ soft_embedding_tensor, prompt.context_embs[0]], dim=1)
-
-            # prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=text_prompts, img_prompts=[[x_adv]])
 
             target_loss = self.attack_loss(prompt, batch_targets)
             target_loss.backward()
@@ -519,81 +497,6 @@ class Attacker:
             self.loss_buffer.append(target_loss.item())
 
             print("target_loss: %f" % target_loss.item())
-
-            if t % 20 == 0:
-                self.plot_loss()
-
-            if t % 100 == 0:
-                print('######### Output - Iter = %d ##########' % t)
-                x_adv = x + adv_noise
-                x_adv = normalize(x_adv)
-                prompt.update_img_prompts([[x_adv]])
-                prompt.img_embs = prompt.img_embs * batch_size
-                prompt.update_context_embs()
-                with torch.no_grad():
-                    response, _ = my_generator.generate(prompt)
-                print('>>>', response)
-
-                adv_img_prompt = denormalize(x_adv).detach().cpu()
-                adv_img_prompt = adv_img_prompt.squeeze(0)
-                save_image(adv_img_prompt, '%s/bad_prompt_temp_%d.bmp' % (self.args.save_dir, t))
-
-        return adv_img_prompt
-
-    def attack_jpeg(self, text_prompt, img, batch_size = 8, num_iter=2000, alpha=1/255, epsilon = 128/255 ):
-        jpeg = DiffJPEG(224, 224, differentiable=True, quality=80)
-
-        print('>>> batch_size:', batch_size)
-
-        clean_prompt = denormalize(img).detach().cpu()
-        clean_prompt = clean_prompt.squeeze(0)
-        save_image(clean_prompt, '%s/clean_prompt.bmp' % (self.args.save_dir))
-    
-        my_generator = generator.Generator(model=self.model)
-
-        adv_noise = torch.rand_like(img).to(self.device) * 2 * epsilon - epsilon
-        x = denormalize(img).clone().to(self.device)
-        adv_noise.data = (adv_noise.data + x.data).clamp(0, 1) - x.data
-
-        adv_noise.requires_grad_(True)
-        adv_noise.retain_grad()
-
-
-        for t in tqdm(range(num_iter + 1)):
-
-            batch_targets = random.sample(self.targets, batch_size)
-
-            batch_indices = [self.targets.index(target) for target in batch_targets]
-            selected_instructions = [self.instructions[i] for i in batch_indices]
-            modified_prompts = []
-            for instruction in selected_instructions:
-                modified_prompt = text_prompt % instruction
-                # print(modified_prompt)
-                modified_prompts.append(modified_prompt)
-
-            x_adv = x + adv_noise
-            img_jpeg = jpeg(x_adv.cpu()).to(self.device)
-            x_adv = normalize(img_jpeg)
-
-            prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=modified_prompts, img_prompts=[[x_adv]])
-
-            # prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=text_prompts, img_prompts=[[x_adv]])
-            prompt.img_embs = prompt.img_embs * batch_size
-            prompt.update_context_embs()
-
-            target_loss = self.attack_loss(prompt, batch_targets)
-            target_loss.backward()
-
-            adv_noise.data = (adv_noise.data - alpha * adv_noise.grad.detach().sign()).clamp(-epsilon, epsilon)
-            adv_noise.data = (adv_noise.data + x.data).clamp(0, 1) - x.data
-            adv_noise.grad.zero_()
-            self.model.zero_grad()
-
-            self.loss_buffer.append(target_loss.item())
-
-            print("target_loss: %f" % (
-                target_loss.item())
-                  )
 
             if t % 20 == 0:
                 self.plot_loss()

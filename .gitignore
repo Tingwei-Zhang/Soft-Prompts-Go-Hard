@@ -1,3 +1,24 @@
-Soft-Prompts-Go-Hard/ckpts/*
+Soft-Prompts-Go-Hard/ckpts/**
+!Soft-Prompts-Go-Hard/ckpts/.gitkeep
 .DS_Store
 Soft-Prompts-Go-Hard/output/*
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/

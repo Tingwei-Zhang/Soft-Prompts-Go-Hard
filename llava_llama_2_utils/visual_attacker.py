@@ -124,8 +124,6 @@ class Attacker:
         adv_noise.requires_grad_(True)
         adv_noise.retain_grad()
 
-        # prompt = prompt_wrapper.Prompt(self.model, self.tokenizer, text_prompts=text_prompt, device=self.device)
-
         for t in tqdm(range(num_iter + 1)):
             
             x_adv = x + adv_noise
@@ -136,11 +134,6 @@ class Attacker:
                 batch_indice = self.targets.index(batch_target[0])
                 selected_instruction = self.instructions[batch_indice]
                 selected_prompt=prompt_wrapper.prepare_text_prompt(selected_instruction)
-                # print('selected_instruction:', selected_prompt)
-                # print('batch_target:', batch_target)
-                # input()
-                # print('text_prompt:', text_prompt)
-                # print()
                 prompt = prompt_wrapper.Prompt(self.model, self.tokenizer, text_prompts=selected_prompt, device=self.device)
                 target_loss += self.attack_loss(prompt, x_adv, batch_target)
 
@@ -154,11 +147,8 @@ class Attacker:
 
             self.loss_buffer.append(target_loss.item())
 
-            print("target_loss: %f" % (
-                target_loss.item())
-                  )
-
             if t % 20 == 0:
+                print("target_loss: %f" % (target_loss.item()))
                 self.plot_loss()
 
             if t % 100 == 0:
@@ -184,33 +174,22 @@ class Attacker:
         clean_prompt = clean_prompt.squeeze(0)
         save_image(clean_prompt, '%s/clean_prompt.bmp' % (self.args.save_dir))
 
-        # Create a mask for the region to perturb: rows_to_change rows around are allowed to change
+        # Create a mask for the region to perturb: only the last rows_to_change rows are allowed to change
         mask = torch.zeros_like(img)
-        # Modify the top rows
-        mask[:, :, :rows_to_change, :] = 1
-
-        # Modify the bottom rows
+        # Modify only the bottom rows
         mask[:, :, -rows_to_change:, :] = 1
-
-        # Modify the left columns
-        mask[:, :, :, :rows_to_change] = 1
-
-        # Modify the right columns
-        mask[:, :, :, -rows_to_change:] = 1
 
         adv_noise = (torch.rand_like(img).to(self.device) * 2 * epsilon - epsilon) * mask  # Initialize noise and apply mask
         x = denormalize(img).clone().to(self.device)
         adv_noise = adv_noise.to(self.device)
         adv_noise.requires_grad_(True)
-        adv_noise.retain_grad()
-
-        # prompt = prompt_wrapper.Prompt(self.model, self.tokenizer, text_prompts=text_prompt, device=self.device)
 
         for t in tqdm(range(num_iter + 1)):
             adv_noise.data = (adv_noise.data + x.data).clamp(0, 1) - x.data
             x_adv = x + adv_noise
             x_adv = normalize(x_adv)
-            target_loss=0
+            
+            target_loss = 0
             for i in range(batch_size):
                 batch_target = random.sample(self.targets, 1)
                 batch_indice = self.targets.index(batch_target[0])
@@ -219,28 +198,28 @@ class Attacker:
                 prompt = prompt_wrapper.Prompt(self.model, self.tokenizer, text_prompts=selected_prompt, device=self.device)
                 target_loss += self.attack_loss(prompt, x_adv, batch_target)
 
-            target_loss/=batch_size
-            target_loss.requires_grad_(True)
+            target_loss /= batch_size
             target_loss.backward()
+            
+            # Update noise with gradient and mask
             with torch.no_grad():
-                adv_noise.data -= (alpha * adv_noise.grad.data.sign() * mask).clamp(-epsilon, epsilon)
+                grad_sign = adv_noise.grad.sign()
+                adv_noise.data = (adv_noise.data - alpha * grad_sign * mask).clamp(-epsilon, epsilon)
                 adv_noise.data = (adv_noise.data + x.data).clamp(0, 1) - x.data
                 adv_noise.grad.zero_()
 
             self.model.zero_grad()
             self.loss_buffer.append(target_loss.item())
 
-            print("target_loss: %f" % (
-                target_loss.item())
-                  )
-
             if t % 20 == 0:
+                print("target_loss: %f" % (target_loss.item()))
                 self.plot_loss()
 
             if t % 100 == 0:
                 print('######### Output - Iter = %d ##########' % t)
                 x_adv = x + adv_noise
                 x_adv = normalize(x_adv)
+                # Use the last prompt for visualization
                 response = my_generator.generate(prompt, x_adv)
                 print('>>>', response)
 

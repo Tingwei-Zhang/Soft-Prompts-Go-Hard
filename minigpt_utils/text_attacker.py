@@ -117,11 +117,6 @@ class Attacker:
         self.get_vocabulary()
         vocabs, embedding_matrix = self.vocabs, self.embedding_matrix
         
-        # print(self.vocabs)
-        # print(self.embedding_matrix)
-        # print(self.id_to_vocab)
-        # print(self.vocab_to_id)
-        # input()
         trigger_token_length = 2 # equivalent to
         print(trigger_token_length)
         input()
@@ -153,9 +148,6 @@ class Attacker:
                                             increase_loss=False, num_candidates=self.args.n_candidates)
 
                 self.model.zero_grad()
-
-                # print(self.args.n_candidates)
-                #print(candidates)
 
                 # try all the candidates and pick the best
                 # comparing candidates does not require gradient computation
