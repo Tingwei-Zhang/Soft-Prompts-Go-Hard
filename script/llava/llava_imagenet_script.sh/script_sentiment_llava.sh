@@ -14,7 +14,6 @@ python -u llava_llama_v2_inference.py --data_path instruction_data/0/Sentiment/d
 python -u llava_llama_v2_inference.py --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/llava/0/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/0/Sentiment/Negative/constrained_eps_32_batch_8/result.jsonl
 python -u llava_llama_v2_inference.py --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/llava/0/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/0/Sentiment/Positive/constrained_eps_32_batch_8/result.jsonl
 
-
 #Image 1
 #Attack
 python llava_llama_v2_visual_attack.py --data_path instruction_data/1/Sentiment/dataset.csv --instruction positive --n_iters 2000 --constrained constrained --eps 32 --alpha 1 --image_file clean_images/1.png --save_dir output/llava/1/Sentiment/Positive/constrained_eps_32_batch_8

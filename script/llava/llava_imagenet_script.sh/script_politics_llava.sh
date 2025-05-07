@@ -34,18 +34,17 @@ python -u llava_llama_v2_inference.py --data_path instruction_data/2/Politics/da
 python -u llava_llama_v2_inference.py --data_path instruction_data/2/Politics/dataset.csv --image_file output/llava/2/Politics/Right/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/2/Politics/Right/constrained_eps_32_batch_8/result.jsonl
 python -u llava_llama_v2_inference.py --data_path instruction_data/2/Politics/dataset.csv --image_file output/llava/2/Politics/Left/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/2/Politics/Left/constrained_eps_32_batch_8/result.jsonl
 
-# # Attack
-# python llava_llama_v2_visual_attack.py --data_path instruction_data/3/Politics/dataset.csv --instruction right --n_iters 2000 --constrained constrained --eps 32 --alpha 1 --image_file clean_images/3.png --save_dir output/llava/3/Politics/Right/constrained_eps_32_batch_8
-# python llava_llama_v2_visual_attack.py --data_path instruction_data/3/Politics/dataset.csv --instruction left --n_iters 2000 --constrained constrained --eps 32 --alpha 1 --image_file clean_images/3.png --save_dir output/llava/3/Politics/Left/constrained_eps_32_batch_8
-# #Baseline 1
-# python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file clean_images/3.png --output_file output/llava/3/baseline_1/result.jsonl
-# #Baseline 2
-# python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file clean_images/3.png --output_file output/llava/3/Politics/Right/baseline_2/result.jsonl --instruction right
-# python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file clean_images/3.png --output_file output/llava/3/Politics/Left/baseline_2/result.jsonl --instruction left
-# # Our method
-# python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file output/llava/3/Politics/Right/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/3/Politics/Right/constrained_eps_32_batch_8/result.jsonl
-# python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file output/llava/3/Politics/Left/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/3/Politics/Left/constrained_eps_32_batch_8/result.jsonl
-
+# Attack
+python llava_llama_v2_visual_attack.py --data_path instruction_data/3/Politics/dataset.csv --instruction right --n_iters 2000 --constrained constrained --eps 32 --alpha 1 --image_file clean_images/3.png --save_dir output/llava/3/Politics/Right/constrained_eps_32_batch_8
+python llava_llama_v2_visual_attack.py --data_path instruction_data/3/Politics/dataset.csv --instruction left --n_iters 2000 --constrained constrained --eps 32 --alpha 1 --image_file clean_images/3.png --save_dir output/llava/3/Politics/Left/constrained_eps_32_batch_8
+#Baseline 1
+python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file clean_images/3.png --output_file output/llava/3/baseline_1/result.jsonl
+#Baseline 2
+python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file clean_images/3.png --output_file output/llava/3/Politics/Right/baseline_2/result.jsonl --instruction right
+python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file clean_images/3.png --output_file output/llava/3/Politics/Left/baseline_2/result.jsonl --instruction left
+# Our method
+python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file output/llava/3/Politics/Right/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/3/Politics/Right/constrained_eps_32_batch_8/result.jsonl
+python -u llava_llama_v2_inference.py --data_path instruction_data/3/Politics/dataset.csv --image_file output/llava/3/Politics/Left/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/3/Politics/Left/constrained_eps_32_batch_8/result.jsonl
 
 # Attack
 python llava_llama_v2_visual_attack.py --data_path instruction_data/4/Politics/dataset.csv --instruction right --n_iters 2000 --constrained constrained --eps 32 --alpha 1 --image_file clean_images/4.png --save_dir output/llava/4/Politics/Right/constrained_eps_32_batch_8

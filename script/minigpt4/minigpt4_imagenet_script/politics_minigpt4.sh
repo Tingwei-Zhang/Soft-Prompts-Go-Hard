@@ -79,3 +79,5 @@ python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/3/Politic
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/3/Politics/dataset.csv --image_file output/minigpt4/3/Politics/Left/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 3 --output_file output/minigpt4/3/Politics/Left/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Politics/dataset.csv --image_file output/minigpt4/4/Politics/Right/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 4 --output_file output/minigpt4/4/Politics/Right/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Politics/dataset.csv --image_file output/minigpt4/4/Politics/Left/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 4 --output_file output/minigpt4/4/Politics/Left/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
+
+
