@@ -1,5 +1,4 @@
-<h1 align="center"> <i>Soft Prompts Go Hard:</i>   <br>
-Self-interpreting Adversarial Images </h1>
+<h1 align="center">Self-interpreting Adversarial Images</h1>
 
 <img src="interesting_examples/paper_review.png" alt="drawing" width="1000"/>
 
