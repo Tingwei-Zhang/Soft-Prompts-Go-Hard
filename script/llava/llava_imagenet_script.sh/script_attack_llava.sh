@@ -58,7 +58,7 @@ python -u llava_llama_v2_inference.py --data_path instruction_data/4/Attack/data
 python -u llava_llama_v2_inference.py --data_path instruction_data/4/Attack/dataset.csv --image_file output/llava/4/Attack/Injection/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/4/Attack/Injection/constrained_eps_32_batch_8/result.jsonl
 python -u llava_llama_v2_inference.py --data_path instruction_data/4/Attack/dataset.csv --image_file output/llava/4/Attack/Spam/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/4/Attack/Spam/constrained_eps_32_batch_8/result.jsonl
 
-
+# evaluating the content
 python -u llava_llama_v2_inference.py --image_file output/llava/0/Attack/Injection/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 0 --output_file output/llava/0/Attack/Injection/constrained_eps_32_batch_8/content_classification_result.jsonl  --instruction inference_content_evaluation
 python -u llava_llama_v2_inference.py --image_file output/llava/0/Attack/Spam/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 0 --output_file output/llava/0/Attack/Spam/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u llava_llama_v2_inference.py --image_file output/llava/1/Attack/Injection/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 1 --output_file output/llava/1/Attack/Injection/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation

@@ -68,7 +68,7 @@ python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Attack/
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Attack/dataset.csv --image_file output/minigpt4/4/Attack/Injection/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Attack/Injection/constrained_eps_32_batch_8/result.jsonl
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Attack/dataset.csv --image_file output/minigpt4/4/Attack/Spam/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Attack/Spam/constrained_eps_32_batch_8/result.jsonl
 
-
+## evaluating the content
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Attack/dataset.csv --image_file output/minigpt4/0/Attack/Injection/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 0 --output_file output/minigpt4/0/Attack/Injection/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Attack/dataset.csv --image_file output/minigpt4/0/Attack/Spam/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 0 --output_file output/minigpt4/0/Attack/Spam/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/1/Attack/dataset.csv --image_file output/minigpt4/1/Attack/Injection/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 1 --output_file output/minigpt4/1/Attack/Injection/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation

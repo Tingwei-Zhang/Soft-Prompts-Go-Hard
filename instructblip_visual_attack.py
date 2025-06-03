@@ -1,20 +1,25 @@
 import argparse
-import torch
 import os
+import random
+import numpy as np
+import torch
+import torch.backends.cudnn as cudnn
+from PIL import Image
 from torchvision.utils import save_image
 import csv
+from lavis.models import load_model_and_preprocess
+from blip_utils import visual_attacker
 
-from PIL import Image
 
 def parse_args():
 
     parser = argparse.ArgumentParser(description="Demo")
-    parser.add_argument("--model_path", type=str, default="ckpts/llava_llama_2_13b_chat_freeze")
-    parser.add_argument("--model_base", type=str, default=None)
+
     parser.add_argument("--gpu_id", type=int, default=0, help="specify the gpu to load the model.")
     parser.add_argument("--data_path", type=str, default="instruction_data/0/Sentiment/dataset.csv")
     parser.add_argument("--instruction", type=str, default='positive',
-                    choices=[ "positive", "negative", "neutral", "irony", "non_irony", "formal", "informal", "french", "english", "spanish", "left", "right"],
+                    choices=[ "positive", "negative", "neutral", "irony", "non_irony", "formal", "informal", "french", "english", "spanish", "left", "right",
+                             "negative_injection","positive_injection","positive_spam","negative_spam","injection","spam"],
                     help="Instruction to be used for the attack.")
     parser.add_argument("--n_iters", type=int, default=5000, help="specify the number of iterations for attack.")
     parser.add_argument('--eps', type=int, default=32, help="epsilon of the attack budget")
@@ -57,16 +62,25 @@ def read_csv_data(filepath):
 #             Model Initialization
 # ========================================
 
+
 print('>>> Initializing Models')
 
-from llava_llama_2.utils import get_model
 args = parse_args()
+device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
 
-print('model = ', args.model_path)
-
-tokenizer, model, image_processor, model_name = get_model(args)
+# remember to modify the parameter llm_model in ./lavis/configs/models/blip2/blip2_instruct_vicuna13b.yaml to the path that store the vicuna weights
+model, vis_processor, _ = load_model_and_preprocess(
+        name='blip2_vicuna_instruct',
+        model_type='vicuna13b',
+        is_eval=True,
+        device=device,
+    )
 model.eval()
-# model.to('cuda:{}'.format(args.gpu_id))
+"""
+Source code of the model in:
+    ./lavis/models/blip2_models/blip2_vicuna_instruct.py
+"""
+
 print('[Initialization Finished]\n')
 
 if not os.path.exists(args.save_dir):
@@ -86,9 +100,6 @@ if args.instruction=='right':
 if args.instruction=='left':
     args.instruction='Democrat'
 
-
-
-#find the index of the "positive" in column_names list
 instruction_index = column_names.index(args.instruction)
 
 print(args.instruction)
@@ -96,42 +107,22 @@ print(column_names[instruction_index])
 instructions=lists[0]
 targets=lists[instruction_index]
 instructions=instructions[:40]
-# Adding the text to each element in the list
-print('>>> Instructions:', instructions[0])
 targets=targets[:40]
-# print('>>> Instructions:', instructions)
-# print('>>> Targets:', targets)
 
-from llava_llama_2_utils import visual_attacker
+my_attacker = visual_attacker.Attacker(args, model, targets, instructions, device=model.device, is_rtp=False)
 
-print('device = ', model.device)
-my_attacker = visual_attacker.Attacker(args, model, tokenizer, targets, instructions, device=model.device, image_processor=image_processor)
+img = Image.open(args.image_file).convert('RGB')
+img = vis_processor["eval"](img).unsqueeze(0).to(device)
 
-image = load_image(args.image_file)
-image = image_processor.preprocess(image, return_tensors='pt')['pixel_values'].cuda()
-print(image.shape)
+if not args.constrained:
 
-from llava_llama_2_utils import prompt_wrapper
-text_prompt_template = prompt_wrapper.prepare_text_prompt('')
-print(text_prompt_template)
-
-if args.constrained=='unconstrained':
-    print('[unconstrained]')
-    adv_img_prompt = my_attacker.attack_unconstrained(text_prompt_template,
-                                                            img=image, batch_size = 8,
+    adv_img_prompt = my_attacker.attack_unconstrained(img=img, batch_size = 8,
                                                             num_iter=args.n_iters, alpha=args.alpha/255)
-elif args.constrained=='partial':
-    adv_img_prompt = my_attacker.attack_partial_constrained(text_prompt_template,
-                                                            img=image, batch_size= 8,
-                                                            num_iter=args.n_iters, alpha=args.alpha / 255,
-                                                            epsilon=args.eps / 255, rows_to_change=10)
+
 else:
-    adv_img_prompt = my_attacker.attack_constrained(text_prompt_template,
-                                                            img=image, batch_size= 4,
+    adv_img_prompt = my_attacker.attack_constrained(img=img, batch_size= 8,
                                                             num_iter=args.n_iters, alpha=args.alpha / 255,
                                                             epsilon=args.eps / 255)
 
-
 save_image(adv_img_prompt, '%s/bad_prompt.bmp' % args.save_dir)
 print('[Done]')
-

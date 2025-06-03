@@ -169,18 +169,7 @@ python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_10/S
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_10/Sentiment/dataset.csv --image_file output/minigpt4/coco_10/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/coco_10/Sentiment/Negative/constrained_eps_32_batch_8/result.jsonl
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_10/Sentiment/dataset.csv --image_file output/minigpt4/coco_10/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/coco_10/Sentiment/Positive/constrained_eps_32_batch_8/result.jsonl
 
-# # Content perservation evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_1.jpg --image_index 11 --output_file output/minigpt4/coco_1/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_2.jpg --image_index 12 --output_file output/minigpt4/coco_2/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_3.jpg --image_index 13 --output_file output/minigpt4/coco_3/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_4.jpg --image_index 14 --output_file output/minigpt4/coco_4/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_5.jpg --image_index 15 --output_file output/minigpt4/coco_5/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_6.jpg --image_index 16 --output_file output/minigpt4/coco_6/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_7.jpg --image_index 17 --output_file output/minigpt4/coco_7/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_8.jpg --image_index 18 --output_file output/minigpt4/coco_8/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_9.jpg --image_index 19 --output_file output/minigpt4/coco_9/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_10.jpg --image_index 20 --output_file output/minigpt4/coco_10/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-
+#Content perservation evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_1/Sentiment/dataset.csv --image_file output/minigpt4/coco_1/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 11 --output_file output/minigpt4/coco_1/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_1/Sentiment/dataset.csv --image_file output/minigpt4/coco_1/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 11 --output_file output/minigpt4/coco_1/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_1/Sentiment/dataset.csv --image_file output/minigpt4/coco_1/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 11 --output_file output/minigpt4/coco_1/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
@@ -213,3 +202,14 @@ python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_10/S
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/coco_10/Sentiment/dataset.csv --image_file output/minigpt4/coco_10/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 20 --output_file output/minigpt4/coco_10/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 
 
+#evaluating the content of clean images
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_1.jpg --image_index 11 --output_file output/minigpt4/coco_1/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_2.jpg --image_index 12 --output_file output/minigpt4/coco_2/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_3.jpg --image_index 13 --output_file output/minigpt4/coco_3/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_4.jpg --image_index 14 --output_file output/minigpt4/coco_4/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_5.jpg --image_index 15 --output_file output/minigpt4/coco_5/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_6.jpg --image_index 16 --output_file output/minigpt4/coco_6/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_7.jpg --image_index 17 --output_file output/minigpt4/coco_7/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_8.jpg --image_index 18 --output_file output/minigpt4/coco_8/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_9.jpg --image_index 19 --output_file output/minigpt4/coco_9/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_10.jpg --image_index 20 --output_file output/minigpt4/coco_10/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation

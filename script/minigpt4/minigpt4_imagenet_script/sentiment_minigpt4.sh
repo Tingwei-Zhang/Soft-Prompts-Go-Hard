@@ -83,13 +83,14 @@ python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Sentime
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/minigpt4/4/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Sentiment/Negative/constrained_eps_32_batch_8/result.jsonl
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/minigpt4/4/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/minigpt4/4/Sentiment/Positive/constrained_eps_32_batch_8/result.jsonl
 
-# Content perservation evaluation
+# evaluating the content
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/0.png --image_index 0 --output_file output/minigpt4/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/1.png --image_index 1 --output_file output/minigpt4/1/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/2.png --image_index 2 --output_file output/minigpt4/2/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/3.png --image_index 3 --output_file output/minigpt4/3/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/4.png --image_index 4 --output_file output/minigpt4/4/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 
+# Content perservation evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 0 --output_file output/minigpt4/0/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 0 --output_file output/minigpt4/0/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --data_path instruction_data/0/Sentiment/dataset.csv --image_file output/minigpt4/0/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp  --image_index 0 --output_file output/minigpt4/0/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation

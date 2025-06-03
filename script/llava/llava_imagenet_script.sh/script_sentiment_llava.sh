@@ -78,14 +78,7 @@ python -u llava_llama_v2_inference.py --data_path instruction_data/4/Sentiment/d
 python -u llava_llama_v2_inference.py --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/llava/4/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/4/Sentiment/Negative/constrained_eps_32_batch_8/result.jsonl
 python -u llava_llama_v2_inference.py --data_path instruction_data/4/Sentiment/dataset.csv --image_file output/llava/4/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --output_file output/llava/4/Sentiment/Positive/constrained_eps_32_batch_8/result.jsonl
 
-
-# Content perservation
-python -u llava_llama_v2_inference.py --image_file clean_images/0.png --image_index 0 --output_file output/llava/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u llava_llama_v2_inference.py --image_file clean_images/1.png --image_index 0 --output_file output/llava/1/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u llava_llama_v2_inference.py --image_file clean_images/2.png --image_index 0 --output_file output/llava/2/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u llava_llama_v2_inference.py --image_file clean_images/3.png --image_index 0 --output_file output/llava/3/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-python -u llava_llama_v2_inference.py --image_file clean_images/4.png --image_index 0 --output_file output/llava/4/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
-
+# evaluating the content
 python -u llava_llama_v2_inference.py --image_file output/llava/0/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 0 --output_file output/llava/0/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl  --instruction inference_content_evaluation
 python -u llava_llama_v2_inference.py --image_file output/llava/0/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 0 --output_file output/llava/0/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u llava_llama_v2_inference.py --image_file output/llava/0/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 0 --output_file output/llava/0/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
@@ -101,3 +94,10 @@ python -u llava_llama_v2_inference.py --image_file output/llava/3/Sentiment/Posi
 python -u llava_llama_v2_inference.py --image_file output/llava/4/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 4 --output_file output/llava/4/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u llava_llama_v2_inference.py --image_file output/llava/4/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 4 --output_file output/llava/4/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u llava_llama_v2_inference.py --image_file output/llava/4/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 4 --output_file output/llava/4/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
+
+# evaluating the content of clean images
+python -u llava_llama_v2_inference.py --image_file clean_images/0.png --image_index 0 --output_file output/llava/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u llava_llama_v2_inference.py --image_file clean_images/1.png --image_index 0 --output_file output/llava/1/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u llava_llama_v2_inference.py --image_file clean_images/2.png --image_index 0 --output_file output/llava/2/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u llava_llama_v2_inference.py --image_file clean_images/3.png --image_index 0 --output_file output/llava/3/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u llava_llama_v2_inference.py --image_file clean_images/4.png --image_index 0 --output_file output/llava/4/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation

@@ -1,10 +1,3 @@
-# 1. Download Vicuna's weights to ./models   (it's a delta version)
-# 2. Download LLaMA's weight via: https://huggingface.co/huggyllama/llama-13b/tree/main
-# 3. merge them and setup config
-# 4. Download the mini-gpt4 compoents' pretrained ckpts
-# 5. vision part will be automatically download when launching the model
-
-
 import argparse
 import os
 import random
@@ -130,8 +123,8 @@ print(args.instruction)
 print(column_names[instruction_index])
 instructions=lists[0]
 targets=lists[instruction_index]
-instructions=instructions[:-20]
-targets=targets[:-20]
+instructions=instructions[:40]
+targets=targets[:40]
 
 my_attacker = visual_attacker.Attacker(args, model, targets, instructions, device=model.device, is_rtp=False)
 

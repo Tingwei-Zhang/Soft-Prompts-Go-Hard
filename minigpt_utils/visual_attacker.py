@@ -251,62 +251,6 @@ class Attacker:
 
         return adv_img_prompt
 
-    def soft_attack(self, text_prompt, img, batch_size = 8, num_iter=2000, alpha=1/255, epsilon = 128/255 ):
-        print('>>> batch_size:', batch_size)
-
-        my_generator = generator.Generator(model=self.model)
-        trigger_token_length = 32
-        self.soft_embedding = torch.nn.Parameter(torch.randn(trigger_token_length, 5120)).requires_grad_(True)
-        self.optimizer = torch.optim.SGD([self.soft_embedding], lr=0.01, momentum=0.9, weight_decay=1e-4)
-
-        for t in tqdm(range(num_iter + 1)):
-
-            batch_targets = random.sample(self.targets, batch_size)
-            batch_indices = [self.targets.index(target) for target in batch_targets]
-            selected_instructions = [self.instructions[i] for i in batch_indices]
-            modified_prompts = []
-            for instruction in selected_instructions:
-                modified_prompt = text_prompt % instruction
-                modified_prompts.append(modified_prompt)
-
-            prompt = prompt_wrapper.Prompt(model=self.model, text_prompts=modified_prompts, img_prompts=[[img]])
-            soft_embedding_tensor = self.soft_embedding.unsqueeze(0).to(self.device)
-            prompt.img_embs = prompt.img_embs * batch_size
-            prompt.update_context_embs()
-
-            prompt.context_embs[0] = torch.cat([ soft_embedding_tensor, prompt.context_embs[0]], dim=1)
-
-            target_loss = self.attack_loss(prompt, batch_targets)
-            target_loss.backward()
-            self.optimizer.step()
-            self.model.zero_grad()
-            self.loss_buffer.append(target_loss.item())
-
-            print("target_loss: %f" % (
-                target_loss.item())
-                  )
-
-            if t % 20 == 0:
-                self.plot_loss()
-
-            if t % 100 == 0:
-                print('######### Output - Iter = %d ##########' % t)
-                #needs to change
-                x_adv = normalize(x_adv)
-                prompt.update_img_prompts([[x_adv]])
-                prompt.img_embs = prompt.img_embs * batch_size
-                prompt.update_context_embs()
-                with torch.no_grad():
-                    response, _ = my_generator.generate(prompt)
-                print('>>>', response)
-
-                adv_img_prompt = denormalize(x_adv).detach().cpu()
-                adv_img_prompt = adv_img_prompt.squeeze(0)
-                save_image(adv_img_prompt, '%s/bad_prompt_temp_%d.bmp' % (self.args.save_dir, t))
-
-        return adv_img_prompt
-
-
     def plot_loss(self):
 
         sns.set_theme()

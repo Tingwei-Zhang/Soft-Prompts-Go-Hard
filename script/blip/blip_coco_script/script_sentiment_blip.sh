@@ -174,7 +174,6 @@ python -u instructblip_inference.py --image_file output/blip/coco_4/Sentiment/Ne
 python -u instructblip_inference.py --image_file output/blip/coco_5/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 15 --output_file output/blip/coco_5/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl  --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/coco_5/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 15 --output_file output/blip/coco_5/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/coco_5/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 15 --output_file output/blip/coco_5/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
-
 python -u instructblip_inference.py --image_file output/blip/coco_6/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 16 --output_file output/blip/coco_6/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/coco_6/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 16 --output_file output/blip/coco_6/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/coco_6/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 16 --output_file output/blip/coco_6/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
@@ -191,7 +190,7 @@ python -u instructblip_inference.py --image_file output/blip/coco_10/Sentiment/P
 python -u instructblip_inference.py --image_file output/blip/coco_10/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 20 --output_file output/blip/coco_10/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/coco_10/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 20 --output_file output/blip/coco_10/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 
-
+#evaluating the content of clean images
 python -u instructblip_inference.py --image_file clean_images/coco_1.jpg --image_index 11 --output_file output/blip/coco_1/baseline_1/content_classification_result.jsonl  --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file clean_images/coco_2.jpg --image_index 12 --output_file output/blip/coco_2/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file clean_images/coco_3.jpg --image_index 13 --output_file output/blip/coco_3/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation

@@ -126,10 +126,6 @@ class Attacker:
             x_adv = x + adv_noise
             x_adv = normalize(x_adv).repeat(batch_size, 1, 1, 1)
 
-            # print(selected_instructions)
-            # print(batch_targets)
-            # input()
-
             samples = {
                 'image': x_adv,
                 'text_input': selected_instructions,

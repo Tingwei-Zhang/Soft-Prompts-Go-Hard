@@ -115,8 +115,7 @@ if not os.path.exists(output_folder):
 
 ##  
 lists, column_names = read_csv_data(args.data_path)
-# datasets = lists[0][-20:]
-datasets = lists[0]
+datasets = lists[0][40:]
 
 if args.mode == "TextOnly":
     prefix = ""
@@ -159,11 +158,10 @@ prompt = prompt_wrapper.Prompt(model=model, img_prompts=[img_prompt])
 out = []
 with torch.no_grad():
     if args.instruction=='inference_content_evaluation':
-        # with open('clean_images/label.txt', 'r') as file:
-        #     labels = file.readlines() 
-        # labels = [label.strip() for label in labels]
-        # image_label = labels[int(args.image_index)]
-        image_label="panda"
+        with open('clean_images/label.txt', 'r') as file:
+            labels = file.readlines() 
+        labels = [label.strip() for label in labels]
+        image_label = labels[int(args.image_index)]
         for i in range(20):
             print(f" ----- {i} ----")
             print(" -- prompt: ---")

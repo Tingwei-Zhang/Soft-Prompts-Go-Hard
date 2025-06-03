@@ -94,3 +94,10 @@ python -u instructblip_inference.py --image_file output/blip/3/Sentiment/Negativ
 python -u instructblip_inference.py --image_file output/blip/4/Sentiment/Positive/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 4 --output_file output/blip/4/Sentiment/Positive/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/4/Sentiment/Neutral/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 4 --output_file output/blip/4/Sentiment/Neutral/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u instructblip_inference.py --image_file output/blip/4/Sentiment/Negative/constrained_eps_32_batch_8/bad_prompt.bmp --image_index 4 --output_file output/blip/4/Sentiment/Negative/constrained_eps_32_batch_8/content_classification_result.jsonl --instruction inference_content_evaluation
+
+#evaluating the content of clean images
+python -u instructblip_inference.py --image_file clean_images/2.png --image_index 0 --output_file output/blip/0/baseline_1/content_classification_result.jsonl  --instruction inference_content_evaluation
+python -u instructblip_inference.py --image_file clean_images/2.png --image_index 1 --output_file output/blip/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u instructblip_inference.py --image_file clean_images/2.png --image_index 2 --output_file output/blip/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u instructblip_inference.py --image_file clean_images/2.png --image_index 3 --output_file output/blip/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+python -u instructblip_inference.py --image_file clean_images/2.png --image_index 4 --output_file output/blip/0/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
