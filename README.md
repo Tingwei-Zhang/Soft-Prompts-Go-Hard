@@ -73,7 +73,6 @@ For all experiment scripts, batch runs, advanced baselines, L2/transfer/content 
 ### 4. Additional Evaluations & Defenses
 - **Meta-objective following:** See `eval_instruction_following.ipynb`.
 - **Content preservation:** See `eval_content_preserving.ipynb`.
-- **Content evaluation (LDI):** See `script/README.md` for commands.
 - **JPEG defense:** See `script/README.md` for usage.
 - **Anomaly detection:** See `eval_anomaly_detection.ipynb`.
 
