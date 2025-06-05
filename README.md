@@ -24,8 +24,10 @@ We evaluate the efficacy of self-interpreting images for a variety of models, in
 
 ### Instruct BLIP Setup
 1. Follow the setup instructions from the [LAVIS repository](https://github.com/salesforce/LAVIS/tree/main/projects/instructblip)
-2. Select the 13B version model (blip2_vicuna_instruct-vicuna13b)
+2. Select the 13B version model ([blip2_vicuna_instruct-vicuna13b](https://huggingface.co/lmsys/vicuna-13b-v1.1))
 3. Download vicuna-13b v1.1 model to: `./ckpts/vicuna-13b-v1.1`
+4. Update the `llm_model` parameter in `./lavis/configs/models/blip2/blip2_instruct_vicuna13b.yaml` to point to your vicuna weights path
+
 
 For additional guidance on visual adversarial examples, refer to the [Visual Adversarial Examples repository](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models?tab=readme-ov-file).
 

@@ -6,9 +6,6 @@ from torchvision.utils import save_image
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
-
-
 def normalize(images):
     mean = torch.tensor([0.48145466, 0.4578275, 0.40821073]).cuda()
     std = torch.tensor([0.26862954, 0.26130258, 0.27577711]).cuda()
@@ -142,10 +139,6 @@ class Attacker:
 
             self.loss_buffer.append(target_loss.item())
 
-            print("target_loss: %f" % (
-                target_loss.item())
-                  )
-
             if t % 20 == 0:
                 self.plot_loss()
 
@@ -153,6 +146,8 @@ class Attacker:
                 print('######### Output - Iter = %d ##########' % t)
                 x_adv = x + adv_noise
                 x_adv = normalize(x_adv)
+                
+                print("target_loss: %f" % (target_loss.item()))
 
                 with torch.no_grad():
                     print('>>> Sample Outputs')

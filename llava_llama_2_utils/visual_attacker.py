@@ -60,11 +60,7 @@ class Attacker:
         adv_noise.requires_grad_(True)
         adv_noise.retain_grad()
 
-        # prompt = prompt_wrapper.Prompt( self.model, self.tokenizer, text_prompts=text_prompt, device=self.device )
-
         for t in tqdm(range(num_iter + 1)):
-
-            # batch_targets = random.sample(self.targets, batch_size)
 
             x_adv = normalize(adv_noise)
             
@@ -74,7 +70,6 @@ class Attacker:
                 batch_target = random.sample(self.targets, 1)
                 batch_indice = self.targets.index(batch_target)
                 selected_instruction = self.instructions[batch_indice]
-                print('selected_instruction:', selected_instruction)
                 prompt = prompt_wrapper.Prompt( self.model, self.tokenizer, text_prompts=selected_instruction, device=self.device )
                 target_loss += self.attack_loss(prompt, x_adv, batch_target)
 
