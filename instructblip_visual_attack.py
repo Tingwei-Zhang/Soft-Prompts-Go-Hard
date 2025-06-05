@@ -10,9 +10,9 @@ def parse_args():
     parser.add_argument("--gpu_id", type=int, default=0, help="specify the gpu to load the model.")
     parser.add_argument("--data_path", type=str, default="instruction_data/0/Sentiment/dataset.csv")
     parser.add_argument("--instruction", type=str, default='positive',
-                    choices=["positive", "negative", "neutral", "irony", "non_irony", "formal", "informal", 
-                            "french", "english", "spanish", "left", "right", "negative_injection",
-                            "positive_injection", "positive_spam", "negative_spam", "injection", "spam"])
+                    choices=["positive", "negative", "neutral", "formal", "informal", 
+                            "french", "english", "spanish", "left", "right", 
+                            "injection", "spam"], help="Instruction to be used for the attack.")
     parser.add_argument("--n_iters", type=int, default=5000, help="specify the number of iterations for attack.")
     parser.add_argument('--eps', type=int, default=32, help="epsilon of the attack budget")
     parser.add_argument('--alpha', type=int, default=1, help="step_size of the attack")
