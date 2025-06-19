@@ -12,37 +12,52 @@ We evaluate the efficacy of self-interpreting images for a variety of models, in
 
 ## Setup
 
-### LLaVA Setup
+### Prerequisites
+
+```bash
+git clone https://github.com/Tingwei-Zhang/Soft-Prompts-Go-Hard
+cd Soft-Prompts-Go-Hard
+
+conda env create -f environment.yml
+conda activate soft_prompt
+```
+
+### Model-Specific Setup
+
+#### LLaVA Setup
 1. Follow the setup instructions from the [LLaVA repository](https://github.com/haotian-liu/LLaVA)
 2. Download the Llama-2-13b-chat model from [Hugging Face](https://huggingface.co/meta-llama/Llama-2-13b-chat-hf?library=true)
 3. Save the downloaded model to: `./ckpts/llava_llama_2_13b_chat_freeze`
 
-### MiniGPT-4 Setup
+#### MiniGPT-4 Setup
 1. Follow the setup instructions from the [MiniGPT-4 repository](https://github.com/Vision-CAIR/MiniGPT-4/tree/main)
 2. Download the 7B version of Vicuna V0 in `./ckpts/vicuna-7b`
 3. Download the pretrained checkpoint from [here](https://drive.google.com/file/d/1a4zLvaiDBr-36pasffmgpvH5P7CKmpze/view) and update the path in `eval_configs/minigpt4_eval.yaml`
 
-### Instruct BLIP Setup
+#### Instruct BLIP Setup
 1. Follow the setup instructions from the [LAVIS repository](https://github.com/salesforce/LAVIS/tree/main/projects/instructblip)
 2. Select the 13B version model ([blip2_vicuna_instruct-vicuna13b](https://huggingface.co/lmsys/vicuna-13b-v1.1))
 3. Download vicuna-13b v1.1 model to: `./ckpts/vicuna-13b-v1.1`
 4. Update the `llm_model` parameter in `./lavis/configs/models/blip2/blip2_instruct_vicuna13b.yaml` to point to your vicuna weights path
 
+### Hardware Requirements
 
-For additional guidance on visual adversarial examples, refer to the [Visual Adversarial Examples repository](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models?tab=readme-ov-file).
+| Model | GPU Requirements | Processing Time |
+|-------|------------------|-----------------|
+| MiniGPT-4 | Single A40/A6000 48GB | ~3.5 hours per image |
+| InstructBLIP | Single A40/A6000 48GB | ~1 hour per image |
+| LLaVA | Two A40/A6000 48GB | ~1.5 hours per image |
 
-Hardware Requirements and Processing Time:
-- MiniGPT-4: Single A40/A6000 48GB GPU, ~3.5 hours per image
-- InstructBLIP: Single A40/A6000 48GB GPU, ~1 hour per image  
-- LLaVA: Two A40/A6000 48GB GPUs, ~1.5 hours per image
+> **Note:** For additional guidance on visual adversarial examples, refer to the [Visual Adversarial Examples repository](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models?tab=readme-ov-file).
 
-## Generate and Evaluate Image Soft Prompts with Meta-objectives
+## Usage
 
 ### 1. Prepare Data
 See [`instruction_data/README.md`](./instruction_data/README.md) for dataset and instruction details.
 
 ### 2. Generate Adversarial Image Soft Prompts
 Run the attack script for your model and meta-objective. For example (MiniGPT-4, 'Negative' instruction):
+
 ```bash
 python minigpt_visual_attack.py \
   --gpu_id 0 \
@@ -57,9 +72,11 @@ python minigpt_visual_attack.py \
 ```
 
 ### 3. Inference and Baseline Evaluation
-- **No Attack (Baseline 1):** Inference on clean image.
-- **Explicit Instruction (Baseline 2):** Inference on clean image with explicit instruction.
-- **Our Attack:** Inference on adversarial image.
+
+Three evaluation scenarios:
+- **No Attack (Baseline 1):** Inference on clean image
+- **Explicit Instruction (Baseline 2):** Inference on clean image with explicit instruction
+- **Our Attack:** Inference on adversarial image
 
 Example (MiniGPT-4, Baseline 1):
 ```bash
@@ -70,13 +87,27 @@ python -u minigpt_inference.py \
   --output_file output/minigpt4/0/baseline_1/result.jsonl
 ```
 
-For all experiment scripts, batch runs, advanced baselines, L2/transfer/content evaluation, and output structure, **see [`script/README.md`](script/README.md)**.
+> **For comprehensive experiment scripts, batch runs, advanced baselines, L2/transfer/content evaluation, and output structure, see [`script/README.md`](script/README.md).**
 
 ### 4. Additional Evaluations & Defenses
-- **Meta-objective following:** See `eval_instruction_following.ipynb`.
-- **Content preservation:** See `eval_content_preserving.ipynb`.
-- **JPEG defense:** See `script/README.md` for usage.
-- **Anomaly detection:** See `eval_anomaly_detection.ipynb`.
 
+- **Meta-objective following:** See `eval_instruction_following.ipynb`
+- **Content preservation:** See `eval_content_preserving.ipynb`
+- **JPEG defense:** See `script/README.md` for usage
+- **Anomaly detection:** See `eval_anomaly_detection.ipynb`
+
+## Citation
+
+If you find this work useful, please cite our paper:
+
+```bibtex
+@article{zhang2025self,
+  title={Self-interpreting Adversarial Images},
+  author={Zhang, Tingwei and Zhang, Collin and Morris, John X and Bagdasarian, Eugene and Shmatikov, Vitaly},
+  year={2025}
+}
+```
+
+## Contact
 
 📬 Questions or feedback? Feel free to open an issue or reach out!
