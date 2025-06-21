@@ -1,6 +1,6 @@
 import argparse, os, random, numpy as np, torch, torch.backends.cudnn as cudnn
 from PIL import Image
-import json, csv
+import json, csv, io
 from minigpt4.common.config import Config
 from minigpt4.common.dist_utils import get_rank
 from minigpt4.common.registry import registry
@@ -24,9 +24,10 @@ def parse_args():
     parser.add_argument("--image_file", type=str, default='./image.bmp', help="Image file")
     parser.add_argument("--output_file", type=str, default='./result.jsonl', help="Output file.")
     parser.add_argument("--instruction", type=str, default=None,
-                choices=["positive", "negative", "neutral", "irony", "non_irony", "formal", "informal", 
+                choices=["positive", "negative", "neutral", "formal", "informal", 
                         "french", "english", "spanish", "left", "right", "inference_content_evaluation"],
                 help="Instruction to be used for the attack.")
+    parser.add_argument("--defense", type=str, default="none", choices=["jpeg", "gaussian", "none"], help="Defense method to be used.")
     parser.add_argument("--image_index", type=int, default=0)
     parser.add_argument(
         "--options",
@@ -69,6 +70,22 @@ def get_text_prompt(prefix, instruction):
         return prefix % prompts[instruction] % (instruction, '%s')
     return prefix % ('Please answer the following question with a %s spin: %s') % (instruction, '%s')
 
+def apply_defense(image, defense_type):
+    if defense_type == "none":
+        return image
+    elif defense_type == "jpeg":
+        buffer = io.BytesIO()
+        image.save(buffer, format='JPEG', quality=50)
+        buffer.seek(0)
+        return Image.open(buffer).convert('RGB')
+    elif defense_type == "gaussian":
+        from scipy.ndimage import gaussian_filter
+        img_array = np.array(image)
+        blurred_array = gaussian_filter(img_array, sigma=1.0)
+        return Image.fromarray(blurred_array.astype(np.uint8))
+    else:
+        raise ValueError(f"Unknown defense type: {defense_type}")
+
 def main():
     print('>>> Initializing Models')
     args = parse_args()
@@ -91,6 +108,7 @@ def main():
     img_prompt = []
     if args.mode in ["VisualChatBot", "JPEG_VisualChatBot"]:
         img = Image.open(args.image_file).convert('RGB')
+        img = apply_defense(img, args.defense)
         if args.mode == "JPEG_VisualChatBot":
             jpeg_path = args.image_file.replace('.bmp', '.jpg')
             img.save(jpeg_path, 'JPEG')

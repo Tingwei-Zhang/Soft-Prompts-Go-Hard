@@ -40,6 +40,8 @@ conda activate soft_prompt
 3. Download vicuna-13b v1.1 model to: `./ckpts/vicuna-13b-v1.1`
 4. Update the `llm_model` parameter in `./lavis/configs/models/blip2/blip2_instruct_vicuna13b.yaml` to point to your vicuna weights path
 
+> **Note:** For additional guidance on setting up environment, refer to the [Visual Adversarial Examples repository](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models?tab=readme-ov-file).
+
 ### Hardware Requirements
 
 | Model | GPU Requirements | Processing Time |
@@ -47,8 +49,6 @@ conda activate soft_prompt
 | MiniGPT-4 | Single A40/A6000 48GB | ~3.5 hours per image |
 | InstructBLIP | Single A40/A6000 48GB | ~1 hour per image |
 | LLaVA | Two A40/A6000 48GB | ~1.5 hours per image |
-
-> **Note:** For additional guidance on visual adversarial examples, refer to the [Visual Adversarial Examples repository](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models?tab=readme-ov-file).
 
 ## Usage
 

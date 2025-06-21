@@ -213,3 +213,4 @@ python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_7.jpg -
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_8.jpg --image_index 18 --output_file output/minigpt4/coco_8/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_9.jpg --image_index 19 --output_file output/minigpt4/coco_9/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
 python -u minigpt_inference.py --gpu_id 0 --image_file clean_images/coco_10.jpg --image_index 20 --output_file output/minigpt4/coco_10/baseline_1/content_classification_result.jsonl --instruction inference_content_evaluation
+

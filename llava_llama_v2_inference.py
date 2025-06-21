@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument("--image_file", type=str, default='./image.bmp')
     parser.add_argument("--output_file", type=str, default='./result.jsonl')
     parser.add_argument("--instruction", type=str, default=None,
-                    choices=["positive", "negative", "neutral", "irony", "non_irony", "formal", "informal", 
+                    choices=["positive", "negative", "neutral", "formal", "informal", 
                             "french", "english", "spanish", "left", "right", "inference_content_evaluation"])
     parser.add_argument("--image_index", type=int, default=0)
     return parser.parse_args()
