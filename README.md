@@ -26,7 +26,7 @@ conda activate soft_prompt
 
 #### LLaVA Setup
 1. Follow the setup instructions from the [LLaVA repository](https://github.com/haotian-liu/LLaVA)
-2. Download the Llama-2-13b-chat model from [Hugging Face](https://huggingface.co/meta-llama/Llama-2-13b-chat-hf?library=true)
+2. Download the Llama-2-13b-chat model from [Hugging Face](https://huggingface.co/liuhaotian/llava-llama-2-13b-chat-lightning-preview)
 3. Save the downloaded model to: `./ckpts/llava_llama_2_13b_chat_freeze`
 
 #### MiniGPT-4 Setup
